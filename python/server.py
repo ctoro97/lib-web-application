@@ -15,10 +15,8 @@
 
 import sys
 import requests
-import json
 from http.server import ThreadingHTTPServer
 from http_handler import HTTPHandler
-# from endpoint import consume_endpoint
 
 # Function to check if 2 arguments passed into program
 # Program exits if it does not have the 2 arguments
@@ -37,23 +35,12 @@ def get_port():
         sys.exit(f'Error when converting argument to PORT number: {err}')
     return PORT
 
-# Function to get the json data from the endpoint passed in as the second argument
-# If error in consuming the api, program will exit
-# def get_api_data():
-#     try:
-#         ENDPOINT = tuple([sys.argv[2]])
-#         data = consume_endpoint(ENDPOINT)
-#     except Exception as err:
-#         sys.exit(f'Error when consuming API from endpoint: {err}')
-#     return data
-
 if __name__ == '__main__':
 
     # First check to see if arguments passed otherwise quit program
     # Then obtain the port number and the data from the endpoint
     arguments_check()
     PORT = tuple([get_port()])
-    # data = get_api_data()
 
     # Set up the server
     server_address = ('localhost', PORT[0])
