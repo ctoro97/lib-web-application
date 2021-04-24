@@ -7,19 +7,35 @@
 
 import requests
 import sys
+import re
+
+# function
+def number_value(data, index_one, index_two):
+    if data[index_one][index_two] is None:
+        return ''
+    
+    return re.sub(r'\D', '', data[index_one][index_two])
+
+# function
+def data_value(data, index_one, index_two):
+    if data[index_one][index_two] is None:
+        return ''
+    
+    return data[index_one][index_two]
 
 # Function that parses the endpoint response data and adds it to html elements in a string
 def parse_data(data):
     formatted_data = ''
     try:
         formatted_data += '<tr>'
-        formatted_data += '<td>' + data['bib_data']['title'] + '</td>'
-        formatted_data += '<td>' + data['bib_data']['author'] + '</td>'
-        formatted_data += '<td>' + data['bib_data']['isbn'] + '</td>'
-        formatted_data += '<td>' + data['bib_data']['date_of_publication'] + '</td>'
-        formatted_data += '<td>' + data['holding_data']['call_number'] + '</td>'
+        formatted_data += '<td>' + data_value(data, 'bib_data', 'title') + '</td>'
+        formatted_data += '<td>' + data_value(data, 'bib_data', 'author') + '</td>'
+        formatted_data += '<td>' + number_value(data, 'bib_data', 'isbn') + '</td>'
+        formatted_data += '<td>' + number_value(data, 'bib_data', 'date_of_publication') + '</td>'
+        formatted_data += '<td>' + data_value(data, 'holding_data', 'call_number') + '</td>'
         formatted_data += '</tr>'
     except:
+        print('error')
         return ''
     return formatted_data
 

@@ -5,19 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>A Table</h1>
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>ISBN</th>
-            <th>Date of Publication</th>
-            <th>Call Number</th>
-        </tr>
-        {data:}
-    </table>
+    <div class="header">
+        <div class="sliver">
+            <strong class="sliver-header">UNIVERSITY NAME</strong>
+        </div>
+        <div class="masthead"></div>
+    </div>
+    <div class="page-content">
+        <div class="table-viewport">
+            <table>
+                <tbody id="results">
+                    <tr>
+                        <th onclick="sortTable(0)">Title</th>
+                        <th onclick="sortTable(1)">Author</th>
+                        <th onclick="sortTable(2)">ISBN</th>
+                        <th onclick="sortTable(3)">Date of Publication</th>
+                        <th onclick="sortTable(4)">Call Number</th>
+                    </tr>
+                    {data:}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="main.js"></script>
 </body>
 </html>
