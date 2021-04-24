@@ -19,10 +19,6 @@ function binary_insert(column, child, row_tracker, row_index, left_index, right_
     }
 
     middle_index = ((left_index + right_index - 1) / 2) | 0;
-    // console.log("--------------------------------------------------------------");
-    // console.log(column);
-    // console.log(child);
-    // console.log(middle_index);
     
     if (column[middle_index] == child) {
         column.splice(middle_index, 0, child);
@@ -90,6 +86,26 @@ function sortTable(index) {
         table.appendChild(new_rows[i]);
     }
 
-    console.log(column);
-    console.log(new_rows);
+    toggleDropdown()
+}
+
+var hidden = true;
+
+function toggleDropdown() {
+    if (hidden) {
+        document.getElementById("dropdown-items").classList.remove("hide");
+        hidden = false;
+    } else {
+        document.getElementById("dropdown-items").classList.add("hide");
+        hidden = true;
+    }
+    
+    
+}
+
+window.onclick = function(event) {
+    if (!event.target.matches('.sort-option') && !event.target.matches('.sort-button') && !hidden) {
+        document.getElementById("dropdown-items").classList.add("hide");
+        hidden = true
+    }
 }

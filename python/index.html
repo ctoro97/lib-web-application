@@ -16,14 +16,23 @@
     </div>
     <div class="page-content">
         <div class="table-viewport">
+            <div class="sort-wrapper">
+                <div class="sort-dropdown">
+                    <button onclick="toggleDropdown()" class="sort-button">Sort</button>
+                    <ul id="dropdown-items" class="hide">
+                        <li class="sort-option" onclick="sortTable(0)">By Title</li>
+                        <li class="sort-option" onclick="sortTable(3)">By Date of Publication</li>
+                    </ul>
+                </div>
+            </div>
             <table>
                 <tbody id="results">
                     <tr>
-                        <th onclick="sortTable(0)">Title</th>
-                        <th onclick="sortTable(1)">Author</th>
-                        <th onclick="sortTable(2)">ISBN</th>
-                        <th onclick="sortTable(3)">Date of Publication</th>
-                        <th onclick="sortTable(4)">Call Number</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>ISBN</th>
+                        <th>Date of Publication</th>
+                        <th>Call Number</th>
                     </tr>
                     {data:}
                 </tbody>
