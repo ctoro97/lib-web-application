@@ -14,21 +14,22 @@
 # |----------| https://www.geeksforgeeks.org/python-exit-commands-quit-exit-sys-exit-and-os-_exit/
 
 import sys
-import requests
 from http.server import ThreadingHTTPServer
 from http_handler import HTTPHandler
 
 # Function to check if 2 arguments passed into program
 # Program exits if it does not have the 2 arguments
 def arguments_check():
-    if len(sys.argv) != 3: sys.exit('Must Input Two Required Arguments: PORT API_ENDPOINT')
+    if len(sys.argv) != 3: 
+        sys.exit('Must Input Two Required Arguments: "PORT" "EX_LIBRIS_ALMA_API_ENDPOINT"')
 
 # Function to convert first argument to integer
 # Must be a valid port number otherwise an exception will be raised and the program exits
 def get_port():
     try:
         PORT = int(sys.argv[1])
-        if PORT < 0 or PORT > 65535: raise ValueError()
+        if PORT < 0 or PORT > 65535: 
+            raise ValueError()
     except ValueError as err: 
         sys.exit('PORT must be a valid number between 0 and 65535')
     except Exception as err: 
