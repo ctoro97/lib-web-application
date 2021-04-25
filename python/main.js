@@ -1,3 +1,6 @@
+var title_ascending = true, date_ascending = true, hidden = true;
+
+
 function binary_insert(column, child, row_tracker, row_index, left_index, right_index) {
     var middle_index;
 
@@ -82,14 +85,40 @@ function sortTable(index) {
         table.deleteRow(1);
     }
 
-    for (i = 0; i < new_rows.length; i++) {
-        table.appendChild(new_rows[i]);
+    if (index == 0) {
+        if (title_ascending == true) {
+            for (i = 0; i < new_rows.length; i++) {
+                table.appendChild(new_rows[i]);
+            }
+            title_ascending = false;
+            date_ascending = true;
+        } else {
+            for (i = new_rows.length - 1; i >= 0; i--) {
+                table.appendChild(new_rows[i]);
+            }
+            title_ascending = true;
+            date_ascending = true;
+        }
+    }
+
+    if (index == 3) {
+        if (date_ascending == true) {
+            for (i = 0; i < new_rows.length; i++) {
+                table.appendChild(new_rows[i]);
+            }
+            date_ascending = false;
+            title_ascending = true;
+        } else {
+            for (i = new_rows.length - 1; i >= 0; i--) {
+                table.appendChild(new_rows[i]);
+            }
+            date_ascending = true;
+            title_ascending = true;
+        }
     }
 
     toggleDropdown()
 }
-
-var hidden = true;
 
 function toggleDropdown() {
     if (hidden) {
