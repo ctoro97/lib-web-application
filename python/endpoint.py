@@ -7,7 +7,6 @@
 
 import requests
 import sys
-import re
 from urllib.parse import urlparse, parse_qs
 from data_formatter import data_value, number_format, isbn_format, title_format
 
@@ -16,13 +15,11 @@ from data_formatter import data_value, number_format, isbn_format, title_format
 def parse_data(data):
     formatted_data = ''
     try:
-        formatted_data += '<tr>'
-        formatted_data += '<td>' + title_format(data, 'bib_data', 'title') + '</td>'
+        formatted_data += '<tr><td>' + title_format(data, 'bib_data', 'title') + '</td>'
         formatted_data += '<td>' + data_value(data, 'bib_data', 'author') + '</td>'
         formatted_data += '<td>' + number_format(data, 'bib_data', 'isbn') + '</td>'
         formatted_data += '<td>' + number_format(data, 'bib_data', 'date_of_publication') + '</td>'
-        formatted_data += '<td>' + data_value(data, 'holding_data', 'call_number') + '</td>'
-        formatted_data += '</tr>'
+        formatted_data += '<td>' + data_value(data, 'holding_data', 'call_number') + '</td></tr>'
     except:
         print('error')
         return ''
