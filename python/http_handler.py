@@ -10,6 +10,7 @@
 from http.server import BaseHTTPRequestHandler
 from endpoint import get_api_data
 
+# Child class for the BaseHTTPRequestHandler to implement the GET requests
 class HTTPHandler(BaseHTTPRequestHandler):
     # Implementation of the GET Method for HTTP Requests
     def do_GET(self):
@@ -25,11 +26,13 @@ class HTTPHandler(BaseHTTPRequestHandler):
             content_type = 'text/html'
             file_content = open('index.html').read().format(data=data)
         
+        # Get the CSS file to style the HTML page
         if self.path == '/styles.css':
             status_code = 200
             content_type = 'text/css'
             file_content = open('styles.css').read()
 
+        # Get the JavaScript file for sorting table data and manipulating the HTML DOM
         if self.path == '/main.js':
             status_code = 200
             content_type = 'text/javascript'
