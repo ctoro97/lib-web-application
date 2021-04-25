@@ -2,7 +2,7 @@ import re
 import string
 
 #---------------------------------------------------------------------------------------------------------------------
-# function
+# Function that formats the author name by removing comma or period at the end of name
 def author_format(data, index_one, index_two):
     if data[index_one][index_two] is None:
         return ''
