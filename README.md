@@ -31,7 +31,7 @@ Christian Toro
 
 ## Sources
 ### Ex Libris and Library Standards
-1. Ex Libris Alma
+1. _Ex Libris Alma_
     - General Information
         - https://exlibrisgroup.com/products/alma-library-services-platform/open-platform/
     - REST API
