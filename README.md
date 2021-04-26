@@ -43,13 +43,13 @@ Christian Toro
     - https://www.loc.gov/catdir/cpso/lcco/
 
 ### Code
-1. _How to set up HTTP Server:_
+1. _How to set up HTTP Server_
     - https://docs.python.org/3/library/http.server.html  
-2. _More on the HTTP Server functionality:_ 
+2. _More on the HTTP Server functionality_ 
     - https://docs.python.org/3/library/socketserver.html#socketserver.TCPServer
-3. _Using KeyboardInterrupt Exception to close server:_
+3. _Using KeyboardInterrupt Exception to close server_
     - https://stackoverflow.com/questions/42763311/how-to-shut-down-python-server
-4. _How to exit program:_
+4. _How to exit program_
     - https://www.geeksforgeeks.org/python-exit-commands-quit-exit-sys-exit-and-os-_exit/
 5. _Implementation of BaseHTTPRequestHandler (same as setting up server)_
     - https://docs.python.org/3/library/http.server.html
