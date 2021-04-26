@@ -63,7 +63,7 @@ Christian Toro
     - https://www.w3schools.com/python/python_regex.asp
 
 ### Additional
-1. University of Miami Brand Guidelines
+1. _University of Miami Brand Guidelines_
     - General
         - https://ucomm.miami.edu/_assets/pdf/tools-and-resources/umiami-visual-identity-guide.pdf
     - Web
