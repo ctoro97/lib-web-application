@@ -62,7 +62,7 @@ Christian Toro
 9. _Python Regex_
     - https://www.w3schools.com/python/python_regex.asp
 
-## Additional
+### Additional
 1. University of Miami Brand Guidelines
     - General
         - https://ucomm.miami.edu/_assets/pdf/tools-and-resources/umiami-visual-identity-guide.pdf
