@@ -1,11 +1,6 @@
 # |-------------------------------------------------------------------------------------------------------------------------------
 # | By: Christian Toro |
 # |-------------------------------------------------------------------------------------------------------------------------------
-# | Sources: |
-# |----------| Implementation of BaseHTTPRequestHandler (same as setting up server)
-# |----------| https://docs.python.org/3/library/http.server.html
-# |----------| Pass data to html file from python
-# |----------| https://stackoverflow.com/questions/41354948/passing-variables-to-html-file-on-python
 
 from http.server import BaseHTTPRequestHandler
 from endpoint import get_api_data

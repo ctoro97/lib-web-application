@@ -1,17 +1,6 @@
 # |-------------------------------------------------------------------------------------------------------------------------------
 # | By: Christian Toro |
 # |-------------------------------------------------------------------------------------------------------------------------------
-# | Sources: |
-# |----------| How to get command line arguments and about command line argument in general
-# |----------| https://docs.python.org/3/using/cmdline.html
-# |----------| How to set up HTTP Server
-# |----------| https://docs.python.org/3/library/http.server.html
-# |----------| More on the HTTP Server functionality
-# |----------| https://docs.python.org/3/library/socketserver.html#socketserver.TCPServer
-# |----------| Using KeyboardInterrupt Exception to close server
-# |----------| https://stackoverflow.com/questions/42763311/how-to-shut-down-python-server
-# |----------| How to exit program
-# |----------| https://www.geeksforgeeks.org/python-exit-commands-quit-exit-sys-exit-and-os-_exit/
 
 import sys
 import logging
@@ -40,7 +29,8 @@ if __name__ == '__main__':
     # Run the server and quit on keyboard interrupt
     try:
         print(f'Server listening on localhost:{PORT[0]}')
-        http_server.serve_forever(poll_interval=0.5)
+        poll_interval_value = 0.5
+        http_server.serve_forever(poll_interval=poll_interval_value)
     except KeyboardInterrupt:
         http_server.server_close()
     

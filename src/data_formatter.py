@@ -6,6 +6,11 @@ import re
 import string
 import logging
 
+isbn_10 = 10
+isbn_13 = 13
+isbn_13_1 = '978'
+isbn_13_2 = '979'
+
 #---------------------------------------------------------------------------------------------------------------------
 # Function that formats the author name by removing comma or period at the end of name
 def author_format(data, index_one, index_two):
@@ -34,7 +39,8 @@ def call_number_format(data, index_one, index_two):
         if data[index_one][index_two] is None:
             return ''
         data_string = str(data[index_one][index_two])
-        if 'CD-291' == data_string:
+        special_case = 'CDA-291'
+        if special_case == data_string:
             return 'SDA 55980'
     except:
         logging.error('Call Number key not found in response json.')
@@ -52,10 +58,10 @@ def date_format(data, index_one, index_two):
 # the number contains either 10 or 13 digits as per ISBN standards
 def isbn_format(data, index_one, index_two):
     isbn = number_format(data, index_one, index_two)
-    if len(isbn) != 10 and len(isbn) != 13:
+    if len(isbn) != isbn_10 and len(isbn) != isbn_13:
         return ''
-    if len(isbn) == 13:
-        if '978' not in isbn[0:3] or '979' not in isbn[0:3]:
+    if len(isbn) == isbn_13:
+        if isbn_13_1 not in isbn[0:3] or isbn_13_2 not in isbn[0:3]:
             return ''
     return isbn
 
