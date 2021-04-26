@@ -24,19 +24,19 @@ class HTTPHandler(BaseHTTPRequestHandler):
             data = get_api_data()
             status_code = 200
             content_type = 'text/html'
-            file_content = open('index.html').read().format(data=data)
+            file_content = open('components/search-results/index.html').read().format(data=data)
         
         # Get the CSS file to style the HTML page
         if self.path == '/styles.css':
             status_code = 200
             content_type = 'text/css'
-            file_content = open('styles.css').read()
+            file_content = open('components/search-results/styles.css').read()
 
         # Get the JavaScript file for sorting table data and manipulating the HTML DOM
         if self.path == '/main.js':
             status_code = 200
             content_type = 'text/javascript'
-            file_content = open('main.js').read()
+            file_content = open('components/search-results/main.js').read()
         
         # Add response header with status code to log requests
         # Send header with content type and also send the content

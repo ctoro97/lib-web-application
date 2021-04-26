@@ -7,7 +7,8 @@
 
 import requests
 import sys
-from urllib.parse import urlparse, parse_qs
+import logging
+from config import API_KEY, ENDPOINT
 from data_formatter import author_format, call_number_format, date_format, isbn_format, title_format
 
 #---------------------------------------------------------------------------------------------------------------------
@@ -21,7 +22,7 @@ def parse_data(data):
         formatted_data += '<td>' + date_format(data, 'bib_data', 'date_of_publication') + '</td>'
         formatted_data += '<td>' + call_number_format(data, 'holding_data', 'call_number') + '</td></tr>'
     except:
-        print('error')
+        logging.error('Error formatting the data in parse_data.')
         return ''
     return formatted_data
 
@@ -30,45 +31,38 @@ def parse_data(data):
 # First endpoint returns multiple endpoints under member key
 # Subsequent for loop will retrieve the json data from each individual end point
 # Returns the data as a list
-def consume_endpoint(ENDPOINT: tuple, API_KEY: tuple):
+def consume_endpoint(API_ENDPOINT: tuple, KEY: tuple):
     try:
         # Get request for the endpoint
-        response = requests.get(ENDPOINT[0])
+        response = requests.get(API_ENDPOINT[0], params={'apikey': KEY[0], 'format': 'json'})
         table_row_list = list()
         # If failure to call first api call, exit the program
         if 'json' not in response.headers.get('Content-Type'): 
-            print('Error retrieving data from api endpoint.')
-            return []
+            logging.error('ENDPOINT response did not come in the form of json. Ensure json format is being returned.')
+            return ''
         # Obtain data from each endpoint from the response and format data into html element
         for member in response.json()['member']:
-            response_data = requests.get(member['link'], params={'apikey': API_KEY[0], 'format': 'json'})
+            response_data = requests.get(member['link'], params={'apikey': KEY[0], 'format': 'json'})
             formatted_data = parse_data(response_data.json())
             table_row_list.append(formatted_data)
     except:
-        print('Error retrieving data from api endpoint.')
-        return []
+        logging.error('Error retrieving data from api endpoint and response endpoints.')
+        return ''
     # Returns the html elements with the data as one string
     return "".join(table_row_list)
 
 #---------------------------------------------------------------------------------------------------------------------
-# Simple function for getting api key from the endpoint
-def get_api_key(ENDPOINT: tuple):
-    try:
-        # Parses url into a 6 item tuple
-        endpoint_string = urlparse(ENDPOINT[0])
-        if 'apikey' not in endpoint_string.query:
-            raise ValueError()
-    except:
-        print('No API key found!')
-        return ''
-    # Will get the dictionary from query and return the API key
-    return parse_qs(endpoint_string.query)['apikey']
-
-#---------------------------------------------------------------------------------------------------------------------
 # Function to get the json data from the endpoint passed in as the second argument
-# If error in consuming the api, program will exit
+# If error in consuming the api, function will return empty string
 def get_api_data():
-    ENDPOINT = tuple([sys.argv[2]])
-    API_KEY = tuple([get_api_key(ENDPOINT)])
-    data = consume_endpoint(ENDPOINT, API_KEY)
+    try:
+        API_ENDPOINT = tuple([ENDPOINT[0]],)
+        KEY = tuple([API_KEY[0]],)
+    except IndexError:
+        logging.error('No ENDPOINT or API_KEY were found.')
+        return ''
+    except:
+        logging.error('Unknown error. Ensure ENDPOINT and API_KEY are set up correctly.')
+        return ''
+    data = consume_endpoint(API_ENDPOINT, KEY)
     return data
